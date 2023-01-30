@@ -3,11 +3,14 @@ import ReactDOM from "react-dom/client"
 
 // My components
 import Header from "./components/Header"
+import Header from "./components/Footer"
 
 function Main() {
   return (
     <>
       <Header />
+
+      <Footer />
     </>
   )
 }
