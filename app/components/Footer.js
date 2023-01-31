@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 function Footer() {
   return (
@@ -8,19 +9,19 @@ function Footer() {
           Home
         </a>{" "}
         |{" "}
-        <a className="mx-1" href="/about-us">
+        <Link className="mx-1" to="/about-us">
           About Us
-        </a>{" "}
+        </Link>{" "}
         |{" "}
-        <a className="mx-1" href="/terms">
+        <Link className="mx-1" to="/terms">
           Terms
-        </a>
+        </Link>
       </p>
       <p className="m-0">
-        Copyright &copy; 2020{" "}
-        <a href="/" className="text-muted">
+        Copyright &copy; {new Date().getFullYear() + " "}
+        <Link to="/" className="text-muted">
           ComplexApp
-        </a>
+        </Link>
         . All rights reserved.
       </p>
     </footer>
