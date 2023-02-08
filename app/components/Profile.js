@@ -10,21 +10,26 @@ function Profile() {
   const appState = useContext(StateContext)
   const [profileData, setProfileData] = useState({
     profileUsername: "...",
-    profileAvatar: "https://gravatar.com/avatar/b9408a09298632b5151200f3449434ef?s=128",
+    profileAvatar: "https://gravatar.com/avatar/placeholder?s=128",
     isFollowing: false,
     counts: { postCount: "", followerCount: "", followingCount: "" }
   })
 
   useEffect(() => {
+    const ourRequest = Axios.CancelToken.source()
+
     async function fetchData() {
       try {
-        const response = await Axios.post(`/profile/${username}`, { token: appState.user.token })
+        const response = await Axios.post(`/profile/${username}`, { token: appState.user.token }, { cancelToken: ourRequest.token })
         setProfileData(response.data)
       } catch (e) {
-        console.log("There was a problem.")
+        console.log("There was a problem or the request was canceled.")
       }
     }
     fetchData()
+    return () => {
+      ourRequest.cancel()
+    }
   }, [])
 
   return (
